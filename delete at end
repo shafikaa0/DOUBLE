@@ -1,0 +1,34 @@
+void deleteAtEnd()
+{
+    struct node *toDelete, *temp;
+
+    if(header == NULL)
+    {
+        printf("List is already empty.");
+    }
+    else
+    {
+        toDelete = header;
+
+        while(toDelete->next != NULL)
+        {
+            toDelete = toDelete->next;
+        }
+
+        if(toDelete == header)
+        {
+            header = NULL;
+        }
+        else
+        {
+            temp = toDelete->prev;
+            temp->next = NULL;
+        }
+
+        printf("Data deleted = %d\n", toDelete->data);
+
+        free(toDelete);
+
+        printf("SUCCESSFULLY DELETED LAST NODE FROM LIST\n");
+    }
+}
