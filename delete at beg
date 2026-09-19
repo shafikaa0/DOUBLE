@@ -1,0 +1,26 @@
+void deleteAtBeg()
+{
+    struct node *toDelete;
+
+    if(header == NULL)
+    {
+        printf("List is already empty.");
+    }
+    else
+    {
+        toDelete = header;
+
+        header = header->next;
+
+        if(header != NULL)
+        {
+            header->prev = NULL;
+        }
+
+        printf("Data deleted = %d\n", toDelete->data);
+
+        free(toDelete);
+
+        printf("SUCCESSFULLY DELETED FIRST NODE FROM LIST\n");
+    }
+}
