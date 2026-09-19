@@ -1,0 +1,21 @@
+void insertAtBeg()
+{
+    struct node *newnode;
+
+    newnode = (struct node*)malloc(sizeof(struct node));
+
+    printf("Enter data: ");
+    scanf("%d", &newnode->data);
+
+    newnode->prev = NULL;
+    newnode->next = header;
+
+    if(header != NULL)
+    {
+        header->prev = newnode;
+    }
+
+    header = newnode;
+
+    printf("Node inserted at beginning.\n");
+}
