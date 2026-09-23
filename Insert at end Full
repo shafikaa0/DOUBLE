@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+struct node {
+    int data;
+    struct node*prev;
+    struct node*next;
+}*header;
+
+void createlist (int n);
+void insertatend();
+void traverse(struct node*header);
+
+
+int main () {
+    int n;
+    printf("Enter the num of node: ");
+    scanf("%d",&n);
+    createlist (n);
+
+insertatend();
+    printf("\nDouble linked list:\n");
+    traverse(header);
+  
+} 
+
+void createlist(int n){
+    int data;
+    struct node*newnode,*temp;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    if(newnode==NULL) {
+        printf("unable");
+    }
+    else{
+        printf("1 no nodes data: ");
+        scanf("%d",&data);
+        newnode->data=data;
+        newnode->prev=NULL;
+        newnode->next=NULL;
+        header=newnode;
+        temp=newnode;
+        
+        for(int i=2;i<=n;i++) {
+            newnode=(struct node*)malloc(sizeof(struct node));
+    if(newnode==NULL) {
+        printf("unable");
+        break;
+    }
+    else{
+        printf("%d no nodes data: ",i);
+        scanf("%d",&data);
+        newnode->data=data;
+        newnode->prev=temp;
+        newnode->next=NULL;
+        temp->next=newnode;
+        temp=temp->next;
+        }
+    }
+}
+}
+
+void insertatend() {
+    struct node*newnode,*temp;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    printf("\nEnter data to insert at end: ");
+    scanf("%d",&newnode->data);
+    newnode->next=NULL;
+    if(header==NULL) {
+        newnode->prev= NULL;
+        header=newnode;
+    }
+    else{
+        temp=header;
+        while(temp->next!=NULL) {
+            temp=temp->next;
+        }
+ temp->next=newnode;
+ newnode->prev=temp;
+    }
+
+printf("\nInserted successfully\n");
+}
+
+void traverse(struct node*header){
+    struct node*temp;
+    if(header==NULL) {
+        printf("List is empty");
+    }
+    else {
+        temp=header;
+        while(temp!=NULL) {
+            printf("%d <--> ",temp->data);
+            temp=temp->next;
+        }
+        printf("NULL");
+    }
+}
