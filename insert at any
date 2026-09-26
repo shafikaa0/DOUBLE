@@ -1,49 +1,30 @@
-void insert_position(int data, int position)
-
-{
-
-struct node * newNode, *temp;
-
-if(head == NULL){
-
-printf("Error, List is empty!\n");
-
+insertatany(int data,int pos) {
+    struct node*newnode,*temp;
+    newnode=(struct node*)malloc(sizeof(struct node));
+    if(newnode==NULL) {
+        printf("unable");
+    }
+    else {
+newnode->data=data;
+newnode->next=NULL;
+newnode->prev=NULL;
+if(pos==1) {
+    newnode->prev=NULL;
+    newnode->next=header;
+    header=newnode;
 }
-
 else{
-
-temp = head;
-
-if(temp!=NULL){
-
-newNode = (struct node *)malloc(sizeof(struct node));
-
-newNode->data = data;
-
-newNode->next = temp->next; //Connects new node with n+1th node
-
-newNode->prev = temp; //Connects new node with n-1th node
-
-if(temp->next != NULL)
-
-{
-
-temp->next->prev = newNode; /* Connects n+1th node with new node */
-
+    temp=header;
+    for(int i=2;i<=pos-1;i++) {
+        temp=temp->next;
+        if(temp==NULL) {break;}
+    } if(temp!=NULL) {
+        newnode->next=temp->next;
+        temp->next=newnode;
+    } else{
+        printf("cannot");
+    }
 }
-
-temp->next = newNode; /* Connects n-1th node with new node */
-
-printf("NODE INSERTED SUCCESSFULLY AT %d POSITION\n", position);
-
-}
-
-else{
-
-printf("Error, Invalid position\n");
-
-}
-
-}
-
-}
+        
+        
+    }  }
