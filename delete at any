@@ -1,0 +1,49 @@
+void insertatany(int pos) {
+    struct node *todelete, *prevnode;
+
+    if(header == NULL) {
+        printf("unable to delete");
+    }
+
+    else if(pos < 1) {
+        printf("Invalid pos");
+    }
+
+    else if(pos == 1) {
+        todelete = header;
+        header = header->next;
+
+        if(header != NULL) {
+            header->prev = NULL;
+        }
+
+        printf("deleted %d", todelete->data);
+        free(todelete);
+    }
+
+    else {
+        todelete = header;
+
+        for(int i = 1; i <= pos - 1; i++) {
+            prevnode = todelete;
+            todelete = todelete->next;
+
+            if(todelete == NULL) {
+                printf("Invalid position");
+                return;
+            }
+        }
+
+        prevnode->next = todelete->next;
+
+        if(todelete->next != NULL) {
+            todelete->next->prev = prevnode;
+        }
+
+        todelete->next = NULL;
+        todelete->prev = NULL;
+
+        printf("deleted %d", todelete->data);
+        free(todelete);
+    }
+}
