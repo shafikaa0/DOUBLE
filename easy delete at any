@@ -1,0 +1,30 @@
+void deleteatany(int pos) {
+    struct node *temp;
+
+    if(header == NULL || pos < 1) {
+        printf("Invalid");
+        return;
+    }
+
+    temp = header;
+
+    for(int i = 1; i < pos; i++) {
+        temp = temp->next;
+
+        if(temp == NULL) {
+            printf("Invalid position");
+            return;
+        }
+    }
+
+    if(temp->prev != NULL)
+        temp->prev->next = temp->next;
+    else
+        header = temp->next;
+
+    if(temp->next != NULL)
+        temp->next->prev = temp->prev;
+
+    printf("deleted %d", temp->data);
+    free(temp);
+}
